@@ -1,19 +1,29 @@
 language: node_js
 
+# BEGIN config for keytar from https://github.com/atom/node-keytar/blob/3b7c00b37e58258ae15b43d78c48cf4d05e9a751/.travis.yml
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - xvfb
+      - gnome-keyring
+      - libgnome-keyring-dev
+env:
+  - CC=clang CXX=clang++ npm_config_clang=1
+# END config for keytar
+
+os:
+  - osx
+  - windows
+  - linux
+
+node_js:
+  - 12
+  - node
+
 jobs:
   include:
-  - stage: test_full
-    os:
-    - osx
-    - windows
-    - linux
-    node:
-    - 12
-    - node
-    if: branch = main AND type = push
-  - stage: test_subset
-    os:
-    - linux
-    node:
-    - 12
-    if: type = pull_request
+  - if: type = pull_request # for efficiency, only runs tests on Linux and Node.js version 12 for pull requests
+    os: linux
+    node_js: 12
