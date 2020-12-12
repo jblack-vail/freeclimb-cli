@@ -23,7 +23,9 @@ node_js:
   - node
 
 jobs:
-  include:
-  - if: type = pull_request # for efficiency, only runs tests on Linux and Node.js version 12 for pull requests
-    os: linux
-    node_js: 12
+  exclude: # for efficiency, just run Linux and Node.js 12 for pull requests
+  - if: type = pull_request
+    os:
+    - windows
+    - osx
+    node_js: node
