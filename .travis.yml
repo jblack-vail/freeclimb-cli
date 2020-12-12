@@ -31,5 +31,5 @@ jobs:
       os: windows
     - if: type = pull_request
       os: osx
-    - if: type = pull request
+    - if: type = pull_request
       node_js: node
