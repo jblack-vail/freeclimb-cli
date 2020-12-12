@@ -1,5 +1,19 @@
 language: node_js
-node_js:
-  - 12
-  - node
-services:
+
+jobs:
+  include:
+  - stage: test_full
+    os:
+    - osx
+    - windows
+    - linux
+    node:
+    - 12
+    - node
+    if: branch = main AND type = push
+  - stage: test_subset
+    os:
+    - linux
+    node:
+    - 12
+    if: type = pull_request
