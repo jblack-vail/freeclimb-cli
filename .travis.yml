@@ -1,7 +1,6 @@
 language: node_js
 
 # BEGIN config for keytar from https://github.com/atom/node-keytar/blob/3b7c00b37e58258ae15b43d78c48cf4d05e9a751/.travis.yml
-sudo: false
 
 addons:
   apt:
@@ -22,10 +21,15 @@ node_js:
   - 12
   - node
 
+branches:
+  only:
+    - main
+
 jobs:
   exclude: # for efficiency, just run Linux and Node.js 12 for pull requests
-  - if: type = pull_request
-    os:
-    - windows
-    - osx
-    node_js: node
+    - if: type = pull_request
+      os: windows
+    - if: type = pull_request
+      os: osx
+    - if: type = pull request
+      node_js: node
