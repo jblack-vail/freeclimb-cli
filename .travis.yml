@@ -42,3 +42,5 @@ jobs:
       os: osx
     - if: type = pull_request
       node_js: node
+    - if: type = pull_request
+      node_js: 14
