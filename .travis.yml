@@ -17,11 +17,13 @@ env:
 
 os:
   - osx
-  - windows
+  # Windows tests are disabled unil logon session error can be resolved
+  #- windows
   - linux
 
 node_js:
   - 12
+  - 14
   - node
 
 branches:
@@ -33,9 +35,12 @@ before_install:
 
 jobs:
   exclude: # for efficiency, just run Linux and Node.js 12 for pull requests
-    - if: type = pull_request
-      os: windows
+    # Windows tests are disabled unil logon session error can be resolved
+    #- if: type = pull_request
+    #  os: windows
     - if: type = pull_request
       os: osx
     - if: type = pull_request
       node_js: node
+    - if: type = pull_request
+      node_js: 14
